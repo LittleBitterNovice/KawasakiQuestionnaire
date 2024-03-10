@@ -1,0 +1,81 @@
+
+section
+{
+    display: none;
+}
+
+*
+{
+    color: #104080;
+    font-weight: bold;
+    font-size: calc( 100vw / 12 );
+    margin: 0px;
+    padding: 0px;
+}
+
+section.questionnaire-page
+{
+    flex: none;
+    width: 100vw;
+}
+
+h2.question
+{
+    display: flex;
+    margin: 1em;
+}
+
+span.question-number
+{
+    flex: none;
+    width: 3em;
+}
+
+span.question-text
+{
+    flex:auto;
+}
+
+div.buttons
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+div.buttons button
+{
+    background-color: #ffffff;
+    font-size: 1em;
+    padding: 0.1em 0.2em;
+    border: 0.2em solid #80c060;
+    border-radius: 0.5em;
+    margin: 0.2em 0.1em;
+}
+
+div.buttons button:hover, div.buttons button:active
+{
+    background-color: #80c060;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+article#questionnaire
+{
+    display: flex;
+    overflow: hidden;
+}
+
+h1#start-message, h2#end-message
+{
+    margin: 2em;
+}
+
+span#client-name
+{
+    display: inline-block;
+    width: 3em;
+    margin-left: 3em;
+    text-decoration: underline;
+}
