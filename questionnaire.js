@@ -82,7 +82,7 @@ window.addEventListener( "load", function()
         if( page == ( nPage - 1 ) ) {
             localStorage.setItem( localStorage.length, answer );
             answer = "";
-            await sleep( 1000 );
+            await sleep( 10000 );
             sections[ page ].style.display = "none";
             page = 0;
             sections[ page ].style.display = "block";
