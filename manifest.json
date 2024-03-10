@@ -1,0 +1,7 @@
+
+{
+    "short_name": "川崎市アンケート",
+    "name": "川崎市アンケートPWAサイト",
+    "start_url": "index.html",
+    "display": "standalone"
+}
