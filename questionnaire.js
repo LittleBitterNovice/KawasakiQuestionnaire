@@ -60,7 +60,7 @@ window.addEventListener( "load", function()
                 {
                     start = performance.now();
                     //setTimeout( alert.bind( null, "3000ms passed!" ), 3000 );
-                    timeoutId = setTimeout( buttons[ j ].addEventListener.bind( buttons[ j ], longpressEvent ), pressTime );
+                    timeoutId = setTimeout( buttons[ j ].dispatchEvent.bind( buttons[ j ], longpressEvent ), pressTime );
                 } );
                 buttons[ j ].addEventListener( "longpress", function( lpEvent )
                 {
