@@ -67,10 +67,42 @@ article#questionnaire
 {
     display: flex;
     overflow: hidden;
+    /* 基本的なカスタムプロパティ定義 */
+    --characters-x: 12;
+    --margin-characters-x: 1;
+    --content-characters-x: calc( var( --characters-x ) - var( --margin-characters-x ) * 2 );
+    --characters-y: 16;
+    --margin-characters-y: 1;
+    --content-characters-y: calc( var( --characters-y ) - var( --margin-characters-y ) * 2 );
+    --valid-field-width: min( 100vw, 100vh * ( var( --characters-x ) / var( --characters-y ) ) );
+    --valid-field-height: min( 100vh, 100vw * ( var( --characters-y ) / var( --characters-x ) ) );
+    --questionnaire-width: calc( var( --valid-field-width ) - 1em * var( --margin-characters-x ) * 2 );
+    --questionnaire-height: calc( var( --valid-field-height ) - 1em * var( --margin-characters-y ) * 2 );
+
+    /* 基本的な設計 */
+    --font-size: calc( var( --valid-field-width ) / var( --characters-x ) );
+    --font-weight: bold;
+    --font-family:
+        "Helvetica Neue",               /* MacOS系の欧文フォント */
+        "Arial",                        /* Windowsの欧文フォント */
+        "Hiragino Kaku Gothic ProN",    /* MacOS系の和文フォント */
+        "Meiryo",                       /* Windowsの和文フォント */
+        sans-serif;                     /* 総称フォントファミリー */
+    
+    font-size: var( --font-size );
+    font-weight: var( --font-weight );
+    font-family: var( --font-family );
+
+    /* 当該要素の設計 */
+    display: inline-block;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    width: var( --questionnaire-width );
+    height: var( --questionnaire-height );
+    padding: calc( 1em * var( --margin-characters-x ) / 2 );
+    margin: calc( 1em * var( --margin-characters-y ) / 2 );
 }
 
 h1#start-message, h2#end-message
