@@ -84,7 +84,7 @@ window.addEventListener( "load", function()
     }
 } );
 
-window.addEventListener( "pagehide", function()
+/*window.addEventListener( "pagehide", function()
 {
     let bom = new Uint8Array( [ 0xEF, 0xBB, 0xBF ] );
     let data = "";
@@ -107,4 +107,4 @@ window.addEventListener( "pagehide", function()
     a.click();
     URL.revokeObjectURL( a.href );
     localStorage.clear();
-} );
+} );*/
