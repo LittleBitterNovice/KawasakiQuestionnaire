@@ -135,5 +135,9 @@ function downloadInputData()
     a.href = URL.createObjectURL( blob );
     a.click();
     URL.revokeObjectURL( a.href );
-    localStorage.clear();
+
+	if( window.confirm( "入力データを削除しますか？" ) === true )
+	{
+		localstorage.clear();
+	}
 }
