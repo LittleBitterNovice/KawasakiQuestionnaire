@@ -59,15 +59,13 @@ window.addEventListener( "load", function()
                 buttons[ j ].addEventListener( "pointerdown", function()
                 {
                     start = performance.now();
-                    //setTimeout( alert.bind( null, "3000ms passed!" ), 3000 );
                     timeoutId = setTimeout( buttons[ j ].dispatchEvent.bind( buttons[ j ], longpressEvent ), pressTime );
                 } );
                 buttons[ j ].addEventListener( "longpress", function( lpEvent )
                 {
-                    alert( "lpEvent listened!" );
                     if( lpEvent.detail === pressTime.toString() + "ms" )
                     {
-                        alert( pressTime.toString() + "ms passed!" );
+                        alert( "入力データをダウンロードしてください" );
                     }
                 } );
                 buttons[ j ].addEventListener( "pointerup", function()
@@ -76,7 +74,7 @@ window.addEventListener( "load", function()
                     end = performance.now();
                     if( end - start >= pressTime )
                     {
-                        alert( "button pointerup!" );
+                        downloadInputData();
                     }
                 } );
             }
@@ -112,10 +110,10 @@ window.addEventListener( "load", function()
             page = 0;
             sections[ page ].style.display = "block";
         }
-    }
+	}
 } );
 
-/*window.addEventListener( "pagehide", function()
+function downloadInputData()
 {
     let bom = new Uint8Array( [ 0xEF, 0xBB, 0xBF ] );
     let data = "";
@@ -138,4 +136,4 @@ window.addEventListener( "load", function()
     a.click();
     URL.revokeObjectURL( a.href );
     localStorage.clear();
-} );*/
+} );
