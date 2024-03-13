@@ -52,13 +52,19 @@ window.addEventListener( "load", function()
             //    長押しの処理
             if( i === 0 && j === 0 )
             {
+                let start, end;
                 buttons[ j ].addEventListener( "pointerdown", function()
                 {
+                    start = performance.now();
                     setTimeout( buttons[ j ].dispatchEvent.bind( null, "pointerup" ), 3000 );
                 } );
                 buttons[ j ].addEventListener( "pointerup", function()
                 {
-                    alert( "button pointerup!" );
+                    end = performance.now();
+                    if( end - start >= 3000 )
+                    {
+                        alert( "button pointerup!" );
+                    }
                 } );
             }
         }
