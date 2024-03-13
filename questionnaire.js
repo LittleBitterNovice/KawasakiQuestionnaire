@@ -130,7 +130,7 @@ function downloadInputData()
         data += "\n";
     }
     const blob = new Blob( [ bom, data ], { type: "text/csv" } );
-    const a = this.document.createElement( "a" );
+    const a = window.document.createElement( "a" );
     a.download = "data.csv";
     a.href = URL.createObjectURL( blob );
     a.click();
