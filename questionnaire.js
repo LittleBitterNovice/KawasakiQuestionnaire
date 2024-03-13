@@ -53,23 +53,26 @@ window.addEventListener( "load", function()
             if( i === 0 && j === 0 )
             {
                 let start, end;
-                const puEvent = new PointerEvent( "pointerup", { pointerType: "long-press-3000ms" } );
+                const longpressEvent = new CustomEvent( "longpress", { detail: "3000ms" } );
                 buttons[ j ].addEventListener( "pointerdown", function()
                 {
-                    //start = performance.now();
-                    setTimeout( buttons[ j ].dispatchEvent, 3000, puEvent );
+                    start = performance.now();
                     //setTimeout( alert.bind( null, "3000ms passed!" ), 3000 );
+                    setTimeout( buttons[ j ].addEventListener.bind( buttons[ j ], longpressEvent ), 3000 );
                 } );
-                buttons[ j ].addEventListener( "pointerup", function( pointerEvent )
+                buttons[ j ].addEventListener( "longpress", function( lpEvent )
                 {
-                    //end = performance.now();
-                    /*if( end - start >= 3000 )
+                    if( lpEvent.detail === "3000ms" )
+                    {
+                        alert( "3000ms passed!" );
+                    }
+                } );
+                buttons[ j ].addEventListener( "pointerup", function()
+                {
+                    end = performance.now();
+                    if( end - start >= 3000 )
                     {
                         alert( "button pointerup!" );
-                    }*/
-                    if( pointerEvent.pointerType === "long-press-3000ms" )
-                    {
-                        alert( "button pointerup after 3000ms!" );
                     }
                 } );
             }
