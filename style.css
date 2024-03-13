@@ -65,6 +65,7 @@ article#questionnaire
 {
     display: flex;
     overflow: hidden;
+    touch-action: none;
 }
 
 h1#start-message, h2#end-message
