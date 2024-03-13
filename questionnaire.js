@@ -64,6 +64,7 @@ window.addEventListener( "load", function()
                 } );
                 buttons[ j ].addEventListener( "longpress", function( lpEvent )
                 {
+                    alert( "lpEvent listened!" );
                     if( lpEvent.detail === pressTime.toString() + "ms" )
                     {
                         alert( pressTime.toString() + "ms passed!" );
