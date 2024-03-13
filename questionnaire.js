@@ -84,7 +84,7 @@ window.addEventListener( "load", function()
     }
 } );
 
-window.addEventListener( "beforeunload", function()
+/*window.addEventListener( "beforeunload", function()
 {
     let bom = new Uint8Array( [ 0xEF, 0xBB, 0xBF ] );
     let data = "";
@@ -107,4 +107,4 @@ window.addEventListener( "beforeunload", function()
     a.click();
     URL.revokeObjectURL( a.href );
     localStorage.clear();
-} );
+} );*/
