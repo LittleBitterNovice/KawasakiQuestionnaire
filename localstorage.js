@@ -1,4 +1,9 @@
 
+const dataSubjects =
+[
+    "回答ID", "来館目的", "使用部屋", "年齢", "住所1", "住所2", "住所3", "自宅からの時間"
+];
+
 window.addEventListener( "load", function()
 {
 	const bom = new Uint8Array( [ 0xEF, 0xBB, 0xBF ] );
