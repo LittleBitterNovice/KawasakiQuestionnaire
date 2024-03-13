@@ -57,7 +57,7 @@ window.addEventListener( "load", function()
                 buttons[ j ].addEventListener( "pointerdown", function()
                 {
                     //start = performance.now();
-                    setTimeout( buttons[ j ].dispatchEvent.bind( null, puEvent ), 3000 );
+                    setTimeout( buttons[ j ].dispatchEvent, 3000, puEvent );
                     //setTimeout( alert.bind( null, "3000ms passed!" ), 3000 );
                 } );
                 buttons[ j ].addEventListener( "pointerup", function( pointerEvent )
