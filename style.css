@@ -69,8 +69,6 @@ article#questionnaire
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-    -ms-touch-action: none;
-        touch-action: none;
 }
 
 h1#start-message, h2#end-message
