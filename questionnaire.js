@@ -136,4 +136,4 @@ function downloadInputData()
     a.click();
     URL.revokeObjectURL( a.href );
     localStorage.clear();
-} );
+}
