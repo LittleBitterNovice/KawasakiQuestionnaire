@@ -52,6 +52,8 @@ div.buttons button
     border: 0.2em solid #80c060;
     border-radius: 0.5em;
     margin: 0.2em 0.1em;
+    -ms-touch-action: none;
+        touch-action: none;
 }
 
 div.buttons button:hover, div.buttons button:active
