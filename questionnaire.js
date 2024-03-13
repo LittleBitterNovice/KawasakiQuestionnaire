@@ -84,7 +84,7 @@ window.addEventListener( "load", function()
     }
 } );
 
-window.addEventListener( "unload", function()
+window.addEventListener( "pagehide", function()
 {
     let bom = new Uint8Array( [ 0xEF, 0xBB, 0xBF ] );
     let data = "";
