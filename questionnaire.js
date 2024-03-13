@@ -49,6 +49,18 @@ window.addEventListener( "load", function()
                     addAnswer( this );
                 }
             } );
+            //    長押しの処理
+            if( i === 0 && j === 0 )
+            {
+                buttons[ j ].addEventListener( "pointerdown", function()
+                {
+                    setTimeout( buttons[ j ].dispatchEvent.bind( null, "pointerup" ), 3000 );
+                } );
+                buttons[ j ].addEventListener( "pointerup", function()
+                {
+                    alert( "button pointerup!" );
+                } );
+            }
         }
     }
 
