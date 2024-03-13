@@ -52,25 +52,28 @@ window.addEventListener( "load", function()
             //    長押しの処理
             if( i === 0 && j === 0 )
             {
+                const pressTime = 3000;
+                const longpressEvent = new CustomEvent( "longpress", { detail: pressTime.toString() + "ms" } );
                 let start, end;
-                const longpressEvent = new CustomEvent( "longpress", { detail: "3000ms" } );
+                let timeoutId;
                 buttons[ j ].addEventListener( "pointerdown", function()
                 {
                     start = performance.now();
                     //setTimeout( alert.bind( null, "3000ms passed!" ), 3000 );
-                    setTimeout( buttons[ j ].addEventListener.bind( buttons[ j ], longpressEvent ), 3000 );
+                    timeoutId = setTimeout( buttons[ j ].addEventListener.bind( buttons[ j ], longpressEvent ), pressTime );
                 } );
                 buttons[ j ].addEventListener( "longpress", function( lpEvent )
                 {
-                    if( lpEvent.detail === "3000ms" )
+                    if( lpEvent.detail === pressTime.toString() + "ms" )
                     {
-                        alert( "3000ms passed!" );
+                        alert( pressTime.toString() + "ms passed!" );
                     }
                 } );
                 buttons[ j ].addEventListener( "pointerup", function()
                 {
+                    clearTimeout( timeoutId );
                     end = performance.now();
-                    if( end - start >= 3000 )
+                    if( end - start >= pressTime )
                     {
                         alert( "button pointerup!" );
                     }
