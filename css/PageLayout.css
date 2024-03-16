@@ -1,0 +1,35 @@
+
+/* 聖杯レイアウトのコンテナの設定 */
+.holy-grail-container
+{
+	display: grid;
+	grid-template-columns: -webkit-max-content 1fr -webkit-max-content;
+	grid-template-columns: max-content 1fr max-content;
+	grid-template-rows: -webkit-max-content 1fr -webkit-max-content;
+	grid-template-rows: max-content 1fr max-content;
+	grid-template-areas:	" header	header		header	 "
+							" leftbar	content		rightbar "
+							" footer	footer		footer	 ";
+
+	/* グリッドアイテムとしてヘッダー/フッター/サイドバーを配置 */
+	& > .holy-grail-header
+	{
+		grid-area: header;
+	}
+	& > .holy-grail-leftbar
+	{
+		grid-area: leftbar;
+	}
+	& > .holy-grail-content
+	{
+		grid-area: content;
+	}
+	& > .holy-grail-rightbar
+	{
+		grid-area: rightbar;
+	}
+	& > .holy-grail-footer
+	{
+		grid-area: footer;
+	}
+}

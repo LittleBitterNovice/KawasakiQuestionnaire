@@ -1,0 +1,42 @@
+
+/* コンテナの設定 */
+.dp-container
+{
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+
+	/* ページ移動の方向を設定 */
+	&[ data-dp-direction = "LtoR" ]		/* 左から右 */
+	{
+		flex-direction: row;
+	}
+	&[ data-dp-direction = "RtoL" ]		/* 右から左 */
+	{
+		flex-direction: row-reverse;
+	}
+	&[ data-dp-direction = "UtoD" ]		/* 上から下 */
+	{
+		flex-direction: column;
+	}
+	&[ data-dp-direction = "DtoU" ]		/* 下から上 */
+	{
+		flex-direction: column-reverse;
+	}
+
+	/* ページ（直下アイテム）の設定 */
+	& > .dp-page
+	{
+		flex: none;
+		width: 100%;
+		height: 100%;
+
+		/* ページの非表示 */
+		&[ data-dp-display = "hide" ]
+		{
+			display: none !important;
+		}
+	}
+}
