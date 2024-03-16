@@ -1,0 +1,192 @@
+
+*
+{
+	box-sizing: content-box;
+	padding: 0px;
+	border-style: none;
+	margin: 0px;
+}
+
+body
+{
+	text-align: center;
+}
+
+/* 無効部品 */
+.invalid-content
+{
+	display: none;
+}
+
+article#questionnaire
+{
+	/* 基本的なカスタムプロパティ定義 */
+	--characters-x: 12;
+	--margin-characters-x: 1;
+	--content-characters-x: calc( var( --characters-x ) - var( --margin-characters-x ) * 2 );
+	--characters-y: 16;
+	--margin-characters-y: 1;
+	--content-characters-y: calc( var( --characters-y ) - var( --margin-characters-y ) * 2 );
+	--valid-field-width: min( 100vw, 100vh * ( var( --characters-x ) / var( --characters-y ) ) );
+	--valid-field-height: min( 100vh, 100vw * ( var( --characters-y ) / var( --characters-x ) ) );
+	--questionnaire-width: calc( var( --valid-field-width ) - 1em * var( --margin-characters-x ) * 2 );
+	--questionnaire-height: calc( var( --valid-field-height ) - 1em * var( --margin-characters-y ) * 2 );
+
+	/* 基本の設定 */
+	--font-size: calc( var( --valid-field-width ) / var( --characters-x ) );
+	--font-weight: bold;
+	--font-family:	"Helvetica Neue",				/* MacOS系の欧文フォント */
+					"Arial",						/* Windowsの欧文フォント */
+					"Hiragino Kaku Gothic ProN",	/* MacOS系の和文フォント */
+					"Meiryo",						/* Windowsの和文フォント */
+					"sans-serif";					/* 総称フォントファミリー */
+	
+	font-size: var( --font-size );
+	font-weight: var( --font-weight );
+	font-family: var( --font-family );
+
+	/* 当該要素の設定 */
+	display: inline-block;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	width: var( --questionnaire-width );
+	height: var( --questionnaire-height );
+	padding: calc( 1em * var( --margin-characters-x ) / 2 );
+	margin: calc( 1em * var( --margin-characters-y ) / 2 );
+
+	/* 見出し要素/ボタン要素のフォントサイズ，ウェイトの上書き */
+	& :is( h1, h2, h3, h4, h5, h6 ),
+	& button.questionnaire-button
+	{
+		font-size: var( --font-size );
+		font-weight: var( --font-weight );
+	}
+
+	/* 管理者ページの設定 */
+	& .administrator-page
+	{
+		> #administrator-page-header
+		{
+			display: flex;
+			flex-flow: row;
+			flex-wrap: nowrap;
+			justify-content: space-evenly;
+
+			& .questionnaire-button
+			{
+				flex: none;
+			}
+		}
+
+		& .holy-grail-content
+		{
+			overflow-y: auto;
+		}
+
+		& table#administrator-page-table
+		{
+			align-self: self-start;
+			font-size: 0.2em;
+			width: 100%;
+		}
+	}
+
+	/* 挨拶ページの設定 */
+	& .greeting-page
+	{
+		& .greeting-message
+		{
+			margin: 2em 0em;
+
+			& .signature
+			{
+				display: block;
+				color: #204080;
+				text-decoration: underline;
+				text-align: center;
+				margin: 0.5em 0em;
+
+				& .signature-image
+				{
+					max-width: 8em;
+					max-height: 2em;
+				}
+			}
+		}
+	}
+
+	/* 設問ページの設定 */
+	& .question-page
+	{
+		& .question-parts-container .question-part
+		{
+			/* 設問の設定 */
+			& .question
+			{
+				display: flex;
+				flex-flow: row;
+				flex-wrap: nowrap;
+				text-align: start;
+
+				& .question-number
+				{
+					flex: none;
+					width: 3em;
+				}
+			}
+			/* 回答の選択肢の設定 */
+			& .options-container
+			{
+				display: flex;
+				flex-flow: row wrap;
+				align-content: flex-start;
+				overflow-y: auto;
+
+				& .option-button
+				{
+					flex-shrink: 0;
+					flex-grow: 1;
+				}
+			}
+		}
+		/* 設問ページのフッターの設定 */
+		& .question-page-footer
+		{
+			text-align: start;
+		}
+	}
+
+	/* 各ボタンの設定 */
+	& .green-button
+	{
+		--button-color: #80c060;
+	}
+	& .grey-button
+	{
+		--button-color: #808080;
+	}
+	& .red-button
+	{
+		--button-color: #ff0000;
+	}
+	& .questionnaire-button
+	{
+		background-color: #ffffff;
+		padding: 0.1em 0.2em;
+		border-color: var( --button-color );
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 0.5em;
+		margin: 0.2em 0.1em;
+
+		&:hover,
+		&:active
+		{
+			background-color: var( --button-color );
+			color: #ffffff;
+			cursor: pointer;		
+		}
+	}
+}
