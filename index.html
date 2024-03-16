@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>川崎市利用者アンケート</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/PageLayout.css">
+
+	<script type="text/javascript" src="js/ManipulateString.js"></script>
+	<script type="text/javascript" src="js/GetChildrenElement.js"></script>
+	<script type="text/javascript" src="js/AsyncSleep.js"></script>
+	<script type="text/javascript" src="js/ForbidHistoryback.js"></script>
+
+	<link rel="stylesheet" href="css/DynamicPage.css">
+	<script type="text/javascript" src="js/DynamicPage.js"></script>
+
+	<link rel="stylesheet" href="css/questionnaire.css">
+	<script type="text/javascript" src="js/questionnaire.js"></script>
+	<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+	<article id="questionnaire">
+		<h1 class="invalid-content" id="questionnaire-title">川崎市利用者アンケート</h1>
+		<div class="dp-container" id="questionnaire-dp-container" data-dp-direction="LtoR">
+			<section class="dp-page administrator-page holy-grail-container" id="administrator-page" data-dp-name="admin" data-dp-display="hide">
+				<h2 class="invalid-content administrator-page-title">管理者ページ</h2>
+				<nav class="holy-grail-header administrator-page-header" id="administrator-page-header">
+					<button type="button" class="questionnaire-button red-button" id="data-delete-button">削除する</button>
+					<button type="button" class="questionnaire-button green-button" id="data-download-button">保存する</button>
+				</nav>
+				<div class="holy-grail-content">
+					<table class="administrator-page-table" id="administrator-page-table"></table>
+				</div>
+				<nav class="holy-grail-footer administrator-page-footer" id="administrator-page-footer">
+					<button type="button" class="questionnaire-button grey-button" id="escape-admin-button" data-dp-action="next">入力画面に戻る</button>
+				</nav>
+			</section>
+			<section class="dp-page greeting-page" id="start-greeting-page" data-dp-name="start" data-dp-initial-page="true">
+				<h2 class="invalid-content" id="start-greeting-title">緒言</h2>
+				<p class="greeting-message" id="start-greeting-message">
+					利用者アンケート<br>
+					ご協力おねがいします<br>
+					<span class="signature" id="start-greeting-signature">
+						<img src="image/KawasakiBrandLogo.png" alt="川崎市" class="signature-image" id="start-greeting-signature-image"></img>
+					</span>
+				</p>
+				<button type="button" class="questionnaire-button green-button" id="start-button" data-dp-action="next">回答する</button>
+			</section>
+			<div class="dp-page holy-grail-container question-page" id="question-page" data-dp-name="question">
+				<form class="holy-grail-header dp-container question-parts-container" id="question-page-dp-container" data-dp-direction="LtoR">
+					<section class="dp-page holy-grail-container question-part" id="question-1-page" data-dp-name="purpose">
+						<h2 class="invalid-content" id="question-1-title">設問1：purpose</h2>
+						<legend class="holy-grail-header question" id="question-1-question">
+							<span class="question-number" id="question-1-question-number">問1</span>
+							<span class="question-text" id="question-1-question-text">本日の来館目的</span>
+						</legend>
+						<fieldset class="holy-grail-content options-container" id="question-1-options-container" form="question-page-form">
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-1" name="purpose" value="exercise" data-dp-action="next">体操</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-2" name="purpose" value="tabletennis" data-dp-action="next">卓球</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-3" name="purpose" value="dance" data-dp-action="next">ダンス</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-4" name="purpose" value="IgoShogi" data-dp-action="next">囲碁・将棋</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-5" name="purpose" value="mahjong" data-dp-action="next">麻雀</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-6" name="purpose" value="calligraphy" data-dp-action="next">書道</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-7" name="purpose" value="relaxation" data-dp-action="next">休憩</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-8" name="purpose" value="meeting" data-dp-action="next">会議</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-9" name="purpose" value="consultation" data-dp-action="next">相談</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-1-option-10" name="purpose" value="others" data-dp-action="next">その他</button>
+						</fieldset>
+					</section>
+					<section class="dp-page holy-grail-container question-part" id="question-2-page" data-dp-name="room">
+						<h2 class="invalid-content" id="question-2-title">設問2：room</h2>
+						<legend class="holy-grail-header question" id="question-2-question">
+							<span class="question-number" id="question-2-question-number">問2</span>
+							<span class="question-text" id="question-2-question-text">使用する部屋</span>
+						</legend>
+						<fieldset class="holy-grail-content options-container" id="question-2-options-container" form="question-page-form">
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-1" name="room" value="education" data-dp-action="next">教養室</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-2" name="room" value="club" data-dp-action="next">クラブ室</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-3" name="room" value="tabletennis" data-dp-action="next">卓球部屋</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-4" name="room" value="hall" data-dp-action="next">大広間</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-5" name="room" value="lobby" data-dp-action="next">ロビー</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-2-option-6" name="room" value="others" data-dp-action="next">その他</button>
+						</fieldset>
+					</section>
+					<section class="dp-page holy-grail-container question-part" id="question-3-page" data-dp-name="age">
+						<h2 class="invalid-content" id="question-3-title">設問3：age</h2>
+						<legend class="holy-grail-header question" id="question-3-question">
+							<span class="question-number" id="question-3-question-number">問3</span>
+							<span class="question-text" id="question-3-question-text">ご年齢</span>
+						</legend>
+						<fieldset class="holy-grail-content options-container" id="question-3-options-container" form="question-page-form">
+							<button type="button" class="questionnaire-button option-button green-button" id="question-3-option-1" name="age" value="60s" data-dp-action="next">60代</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-3-option-2" name="age" value="70s" data-dp-action="next">70代</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-3-option-3" name="age" value="80s" data-dp-action="next">80代</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-3-option-4" name="age" value="others" data-dp-action="next">その他</button>
+						</fieldset>
+					</section>
+					<div class="dp-page dp-container question-parts-container" id="question-4-page" data-dp-direction="LtoR" data-dp-name="address">
+						<section class="dp-page holy-grail-container question-part" id="question-4-1-page" data-dp-name="address-1">
+							<h2 class="invalid-content" id="question-4-1-title">設問4-1：address-1</h2>
+							<legend class="holy-grail-header question" id="question-4-1-question">
+								<span class="question-number" id="question-4-1-question-number">問4-1</span>
+								<span class="question-text" id="question-4-1-question-text">お住まい</span>
+							</legend>
+							<fieldset class="holy-grail-content options-container" id="question-4-1-options-container" form="question-page-form">
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-1-option-1" name="address-1" value="KawasakiWard" data-dp-action="next">川崎区</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-1-option-2" name="address-1" value="others" data-dp-action="nextOver">その他</button>
+							</fieldset>
+						</section>
+						<section class="dp-page holy-grail-container question-part" id="question-4-2-page" data-dp-name="address2">
+							<h2 class="invalid-content" id="question-4-2-title">設問4-2：address-2</h2>
+							<legend class="holy-grail-header question" id="question-4-2-question">
+								<span class="question-number" id="question-4-2-question-number">問4-2</span>
+								<span class="question-text" id="question-4-2-question-text">お住まい</span>
+							</legend>
+							<fieldset class="holy-grail-content options-container" id="question-4-2-options-container" form="question-page-form">
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-1" name="address-2" value="Watarida" data-dp-action="next">渡田</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-2" name="address-2" value="WataridaMukaicho" data-dp-action="nextOver">渡田向町</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-3" name="address-2" value="Oiwakecho" data-dp-action="nextOver">追分町</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-4" name="address-2" value="Oshima" data-dp-action="next">大島</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-5" name="address-2" value="Shinkawadori" data-dp-action="nextOver">新川通</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-6" name="address-2" value="Asada" data-dp-action="next">浅田</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-2-option-7" name="address-2" value="others" data-dp-action="nextOver">その他</button>
+							</fieldset>
+						</section>
+						<section class="dp-page holy-grail-container question-part" id="question-4-3-page" data-dp-name="address-3">
+							<h2 class="invalid-content" id="question-4-3-title">設問4-3：address-3</h2>
+							<legend class="holy-grail-header question" id="question-4-3-question">
+								<span class="question-number" id="question-4-3-question-number">問4-3</span>
+								<span class="question-text" id="question-4-3-question-text">お住まい</span>
+							</legend>
+							<fieldset class="holy-grail-content options-container" id="question-4-3-options-container" form="question-page-form">
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-1" name="address-3" value="1st" data-dp-action="next">1丁目</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-2" name="address-3" value="2nd" data-dp-action="next">2丁目</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-3" name="address-3" value="3rd" data-dp-action="next">3丁目</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-4" name="address-3" value="4th" data-dp-action="next">4丁目</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-5" name="address-3" value="5th" data-dp-action="next">5丁目</button>
+								<button type="button" class="questionnaire-button option-button green-button" id="question-4-3-option-6" name="address-3" value="others" data-dp-action="nextOver">その他</button>
+							</fieldset>
+						</section>
+					</div>
+					<section class="dp-page holy-grail-container question-part" id="question-5-page" data-dp-name="time">
+						<h2 class="invalid-content" id="question-5-title">設問5：time</h2>
+						<legend class="holy-grail-header question" id="question-5-question">
+							<span class="question-number" id="question-5-question-number">問5</span>
+							<span class="question-text" id="question-5-question-text">ご自宅からの<br>お時間</span>
+						</legend>
+						<fieldset class="holy-grail-content options-container" id="question-5-options-container" form="question-page-form">
+							<button type="button" class="questionnaire-button option-button green-button" id="question-5-option-1" name="time" value="within5mins" data-dp-action="next">5分以内</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-5-option-2" name="time" value="5-10mins" data-dp-action="next">5～10分</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-5-option-3" name="time" value="10-20mins" data-dp-action="next">10～20分</button>
+							<button type="button" class="questionnaire-button option-button green-button" id="question-5-option-4" name="time" value="over20mins" data-dp-action="next">20分以上</button>
+						</fieldset>
+					</section>
+				</form>
+				<nav class="holy-grail-footer question-page-footer" id="question-page-footer">
+					<button type="button" class="questionnaire-button grey-button" id="footer-prev-button" data-dp-action="prev">◀戻る</button>
+				</nav>
+			</div>
+			<section class="dp-page greeting-page" id="end-greeting-page" data-dp-name="end">
+				<h2 class="invalid-content" id="end-greeting-title">結言</h2>
+				<p class="greeting-message" id="end-greeting-message">
+					ご協力ありがとう<br>
+					ございました<br>
+					<span class="signature" id="end-greeting-signature">
+						<img src="image/KawasakiBrandLogo.png" alt="川崎市" class="signature-image" id="end-greeting-signature-image"></img>
+					</span>
+				</p>
+			</section>
+		</div>
+	</article>
+</body>
+
+</html>
