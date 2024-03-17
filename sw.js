@@ -29,7 +29,7 @@ self.addEventListener( "install", async function ( eventObj )
 //	リクエスト時にキャッシュされたファイルを返す
 self.addEventListener( "fetch", function ( eventObj )
 {
-	eventObj.respondWith( caches.match( eventObj.request ).then( async function ( responseObj )
+	const responseFromCache = caches.match( eventObj.request ).then( async function ( responseObj )
 	{
 		if( typeof responseObj !== "undefined" )
 		{
@@ -49,5 +49,6 @@ self.addEventListener( "fetch", function ( eventObj )
 			console.log( "ServiceWorker cached ", fetchResponse.url );
 			return fetchResponse;
 		}
-	} ) );
+	} );
+	eventObj.respondWith( responseFromCache );
 } );
