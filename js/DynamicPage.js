@@ -224,12 +224,6 @@ class DynamicPage extends EventTarget
 		childDP.addEventListener( "afterPrevOver", parentDP.generateEvent.bind( parentDP, "prev" ) );
 		childDP.addEventListener( "afterNextOver", parentDP.generateEvent.bind( parentDP, "next" ) );
 	}
-	//	入れ子DPのページを作成する
-	createNestedDP( nameStr, pageElem, childDP )
-	{
-		this.createPage( nameStr, pageElem );
-		this.insertNestedDP( nameStr, childDP );
-	}
 
 	//	ページ移動アニメーションのオプションを初期化する
 	initAniOptions()
@@ -251,12 +245,35 @@ class DynamicPage extends EventTarget
 		}
 		return true;
 	}
-
+	//	有効なページインデックスか判定する
+	isValidIndex( indexInt )
+	{
+		if( Number.isInteger( indexInt ) )
+		{
+			if( indexInt >= 0 && indexInt < this.#nPage )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	//	有効なページ名か判定する
+	isValidPageName( nameStr )
+	{
+		if( typeof nameStr === "string" || nameStr instanceof String )
+		{
+			if( nameStr in this.#indexes )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	//	現在のページが指定されたページか判定する
 	isPage( nameStr )
 	{
 		//	ページ名として無効値が指定された場合、エラーを投げる
-		if( nameStr in this.#indexes === false )
+		if( this.isValidPageName( nameStr ) === false )
 		{
 			throw new Error( "arg nameStr is invalid..." );
 		}
@@ -268,21 +285,11 @@ class DynamicPage extends EventTarget
 		return false;
 	}
 
-	//	有効なページインデックスか判定する
-	#isValidIndex( indexInt )
-	{
-		if( Number.isInteger( indexInt ) && indexInt >= 0 && indexInt < this.#nPage )
-		{
-			return true;
-		}
-		return false;
-	}
-
 	//	ページを表示する
 	#displayPage( indexInt )
 	{
 		//	インデックスとして無効値が指定された場合、エラーを投げる
-		if( this.#isValidIndex( indexInt ) === false )
+		if( this.isValidIndex( indexInt ) === false )
 		{
 			throw new Error( "arg indexInt is invalid..." );
 		}
@@ -293,7 +300,7 @@ class DynamicPage extends EventTarget
 	#hidePage( indexInt )
 	{
 		//	インデックスとして無効値が指定された場合、エラーを投げる
-		if( this.#isValidIndex( indexInt ) === false )
+		if( this.isValidIndex( indexInt ) === false )
 		{
 			throw new Error( "arg indexInt is invalid..." );
 		}
@@ -319,8 +326,12 @@ class DynamicPage extends EventTarget
 	}
 
 	//	ページを移動する（表示ページを変更する）
-	async movePage( { destIndex = -1, variation = 0, overFlag = true, historyBackFlag = false, aniFlag = true } = {} )
+	async movePage( { destName = "", destIndex = -1, variation = 0, overFlag = true, historyBackFlag = false, aniFlag = true } = {} )
 	{
+		if( this.isValidPageName( destName ) === true )
+		{
+			destIndex = this.#indexes[ destName ];
+		}
 		//	移動先インデックスが負の場合、変化量を用いて移動先インデックスを決定する
 		if( destIndex < 0 )
 		{
@@ -329,7 +340,7 @@ class DynamicPage extends EventTarget
 		if( overFlag === false )
 		{
 			//	移動先インデックスとして無効値が指定された場合、エラーを投げてrejectする
-			if( this.#isValidIndex( destIndex ) === false )
+			if( this.isValidIndex( destIndex ) === false )
 			{
 				throw new Error( "arg destinationIndex is invalid..." );
 			}
