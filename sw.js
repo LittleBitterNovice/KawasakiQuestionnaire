@@ -29,7 +29,7 @@ self.addEventListener( "install", async function ( eventObj )
 //	リクエスト時にキャッシュされたファイルを返す
 self.addEventListener( "fetch", function ( eventObj )
 {
-	eventObj.respondwith( caches.match( eventObj.request ).then( async function ( responseObj )
+	eventObj.respondWith( caches.match( eventObj.request ).then( async function ( responseObj )
 	{
 		if( typeof responseObj !== "undefined" )
 		{
