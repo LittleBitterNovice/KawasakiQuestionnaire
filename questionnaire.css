@@ -40,16 +40,16 @@ article#questionnaire
 
 	/* 基本の設定 */
 	--font-size: calc( var( --width ) / var( --characters-x ) );
+	--font-size: calc( var( --dynamic-width ) / var( --characters-x ) );
 	--font-weight: bold;
-	--font-family:	"Helvetica Neue",				/* MacOS系の欧文フォント */
+	
+	font-size: var( --font-size );
+	font-weight: var( --font-weight );
+	font-family:	"Helvetica Neue",				/* MacOS系の欧文フォント */
 					"Arial",						/* Windowsの欧文フォント */
 					"Hiragino Kaku Gothic ProN",	/* MacOS系の和文フォント */
 					"Meiryo",						/* Windowsの和文フォント */
 					"sans-serif";					/* 総称フォントファミリー */
-	
-	font-size: var( --font-size );
-	font-weight: var( --font-weight );
-	font-family: var( --font-family );
 
 	/* 当該要素の設定 */
 	display: block;
