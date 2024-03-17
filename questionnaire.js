@@ -142,34 +142,9 @@ document.addEventListener( "DOMContentLoaded", function()
 
 	//	設問DPの設定
 	const questionDPContainer = getChildElementById( questionPage, "question-page-dp-container" );
-	const questionDPPages = getDirectChildrenArrayByClassName( questionDPContainer, "dp-page" );
-
 	const questionDP = new DynamicPage( questionDPContainer );
 	mainDP.insertNestedDP( questionPageName, questionDP );
-	questionDPPages.forEach( function( pageElem )
-	{
-		const pageName = pageElem.getAttribute( "data-dp-name" );
-		questionDP.createPage( pageName, pageElem );
-		//	入れ子DPを持たないページのボタン押下時の処理を設定
-		if( pageElem.classList.contains( "dp-container" ) === false )
-		{
-			setDPPageButtonAction( questionDP, pageElem );
-		}
-		//	入れ子DPの設定
-		else if( pageElem.classList.contains( "dp-container" ) === true )
-		{
-			const nestedDP = new DynamicPage( pageElem );
-			questionDP.insertNestedDP( pageName, nestedDP );
-			const nestedDPPages = getDirectChildrenArrayByClassName( pageElem, "dp-page" );
-			nestedDPPages.forEach( function( nestedDPPageElem )
-			{
-				const nestedDPPageName = nestedDPPageElem.getAttribute( "data-dp-name" );
-				nestedDP.createPage( nestedDPPageName, nestedDPPageElem );
-				//	入れ子DPのページのボタン押下時の処理を設定
-				setDPPageButtonAction( nestedDP, nestedDPPageElem );
-			} );
-		}
-	} );
+	createNestedDP( questionDP );
 
 	//	設問ページのフッターナビの設定
 	const questionPageFooter = getChildElementById( questionPage, "question-page-footer" );
@@ -191,7 +166,42 @@ document.addEventListener( "DOMContentLoaded", function()
 	//	ブラウザバックを禁止する
 	forbidHistoryBack();
 
-	//	DPページ内のボタン押下時の処理を設定する関数
+	//	サービスワーカーの登録
+	if( "serviceWorker" in navigator )
+	{
+		navigator.serviceWorker.register( "sw.js" ).then( function ()
+		{
+			console.log( "ServiceWorker Registration successed" );
+		}, function ( error )
+		{
+			console.log( "ServiceWorker Registration errored" );
+			console.log( error );
+		} );
+	}
+
+	//	HTMLの構造から入れ子構造を持つDPを作成する
+	function createNestedDP( parentDP )
+	{
+		const childPages = getDirectChildrenArrayByClassName( parentDP.containerElem, "dp-page" );
+		childPages.forEach( function( pageElem )
+		{
+			const pageName = pageElem.getAttribute( "data-dp-name" );
+			parentDP.createPage( pageName, pageElem );
+			//	入れ子DPを持つ場合、再帰的に呼び出す
+			if( pageElem.classList.contains( "dp-container" ) === true )
+			{
+				const nestedDP = new DynamicPage( pageElem );
+				parentDP.insertNestedDP( pageName, nestedDP );
+				createNestedDP( nestedDP );
+			}
+			else
+			{
+				setDPPageButtonAction( parentDP, pageElem );
+			}
+		} );
+	}
+
+	//	設問DPページ内のボタン押下時の処理を設定する関数
 	function setDPPageButtonAction( DPObj, DPPageElem )
 	{
 		const optionsContainer = getDirectChildElementById( DPPageElem, DPPageElem.id.slice( 0, - "page".length ) + "options-container" );
@@ -200,33 +210,36 @@ document.addEventListener( "DOMContentLoaded", function()
 		{
 			buttonElem.addEventListener( "click", async function()
 			{
+				questionnaire.inert = true;
 				const questionSubject = buttonElem.getAttribute( "name" );
 				const buttonText = buttonElem.innerText;
-				questionnaire.inert = true;
 				userInput.push( {
 					subject: questionSubject,
 					answer: buttonText
 				} );
 				await sleep( 200 );
-				const DPAction = buttonElem.getAttribute( "data-dp-action" );
-				let eventType;
+				const eventType = buttonElem.getAttribute( "data-dp-action" );
 				let argObj = {};
 				//	moveイベントの場合、引数オブジェクトを決定する
-				if( DPAction.slice( 0, "move".length ) === "move" )
+				if( eventType === "move" )
 				{
-					eventType = "move";
-					if( DPAction.slice( "move".length, "move".length + "To".length ) === "To" )
+					const destination = buttonElem.getAttribute( "data-dp-destination" );
+					if( destination !== null )
 					{
-						argObj = { destIndex: parseInt( DPAction.slice( "move".length + "To".length ) ) };
+						if( DPObj.isValidPageName( destination ) )
+						{
+							argObj = { destName: destination };
+						}
+						else if( DPObj.isValidIndex( parseInt( destination ) ) === true )
+						{
+							argObj = { destIndex: parseInt( destination ) };
+						}
 					}
-					else
+					const variation = buttonElem.getAttribute( "data-dp-variation" );
+					if( variation !== null && Number.isInteger( parseInt( variation ) ) )
 					{
-						argObj = { variation: parseInt( DPAction.slice( "move".length ) ) };
+						argObj = { variation: DPObj.isValidIndex( parseInt( variation ) ) }
 					}
-				}
-				else
-				{
-					eventType = DPAction;
 				}
 				await DPObj.generateEvent( eventType, argObj );
 				questionnaire.inert = false;
@@ -301,18 +314,5 @@ document.addEventListener( "DOMContentLoaded", function()
 				cell.innerText = answerStr;
 			} );
 		}
-	}
-
-	//	サービスワーカーの登録
-	if( "serviceWorker" in navigator )
-	{
-		navigator.serviceWorker.register( "sw.js" ).then( function ()
-		{
-			console.log( "ServiceWorker Registration successed" );
-		}, function ( error )
-		{
-			console.log( "ServiceWorker Registration errored" );
-			console.log( error );
-		} );
 	}
 } );
