@@ -40,10 +40,11 @@ article#questionnaire
 
 	/* 基本の設定 */
 	--font-size: calc( var( --width ) / var( --characters-x ) );
-	--font-size: calc( var( --dynamic-width ) / var( --characters-x ) );
+	--dynamic-font-size: calc( var( --dynamic-width ) / var( --characters-x ) );
 	--font-weight: bold;
 	
 	font-size: var( --font-size );
+	font-size: var( --dynamic-font-size );
 	font-weight: var( --font-weight );
 	font-family:	"Helvetica Neue",				/* MacOS系の欧文フォント */
 					"Arial",						/* Windowsの欧文フォント */
