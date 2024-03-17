@@ -306,7 +306,7 @@ document.addEventListener( "DOMContentLoaded", function()
 	//	サービスワーカーの登録
 	if( "serviceWorker" in navigator )
 	{
-		navigator.serviceWorker.register( "sw.js" ).then( function ()
+		navigator.serviceWorker.register( "/js/sw.js" ).then( function ()
 		{
 			console.log( "ServiceWorker Registration successed" );
 		}, function ( error )
