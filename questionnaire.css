@@ -7,33 +7,37 @@
 	margin: 0px;
 }
 
-body
-{
-	text-align: center;
-}
-
 /* 無効部品 */
 .invalid-content
 {
 	display: none;
 }
 
+body
+{
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+}
+
 article#questionnaire
 {
 	/* 基本的なカスタムプロパティ定義 */
 	--characters-x: 12;
-	--margin-characters-x: 1;
-	--content-characters-x: calc( var( --characters-x ) - var( --margin-characters-x ) * 2 );
 	--characters-y: 16;
+	--margin-characters-x: 1;
 	--margin-characters-y: 1;
+	--content-characters-x: calc( var( --characters-x ) - var( --margin-characters-x ) * 2 );
 	--content-characters-y: calc( var( --characters-y ) - var( --margin-characters-y ) * 2 );
-	--valid-field-width: min( 100vw, 100vh * ( var( --characters-x ) / var( --characters-y ) ) );
-	--valid-field-height: min( 100vh, 100vw * ( var( --characters-y ) / var( --characters-x ) ) );
-	--questionnaire-width: calc( var( --valid-field-width ) - 1em * var( --margin-characters-x ) * 2 );
-	--questionnaire-height: calc( var( --valid-field-height ) - 1em * var( --margin-characters-y ) * 2 );
+	--content-aspect-ratio: calc( var( --content-characters-x ) / var( --content-characters-y ) );
+
+	--width:  min( 100vw, 100vh * var( --content-aspect-ratio ) );
+	--height: min( 100vh, 100vw / var( --content-aspect-ratio ) );
 
 	/* 基本の設定 */
-	--font-size: calc( var( --valid-field-width ) / var( --characters-x ) );
+	--font-size: calc( var( --width ) / var( --characters-x ) );
 	--font-weight: bold;
 	--font-family:	"Helvetica Neue",				/* MacOS系の欧文フォント */
 					"Arial",						/* Windowsの欧文フォント */
@@ -46,15 +50,16 @@ article#questionnaire
 	font-family: var( --font-family );
 
 	/* 当該要素の設定 */
-	display: inline-block;
+	display: block;
+	text-align: center;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
-	width: var( --questionnaire-width );
-	height: var( --questionnaire-height );
+	width:  calc( var( --width )  - 1em * var( --margin-characters-x ) * 2 );
+	height: calc( var( --height ) - 1em * var( --margin-characters-y ) * 2 );
 	padding: calc( 1em * var( --margin-characters-x ) / 2 );
-	margin: calc( 1em * var( --margin-characters-y ) / 2 );
+	margin:  calc( 1em * var( --margin-characters-x ) / 2 );
 
 	/* 見出し要素/ボタン要素のフォントサイズ，ウェイトの上書き */
 	& :is( h1, h2, h3, h4, h5, h6 ),
@@ -105,7 +110,6 @@ article#questionnaire
 				display: block;
 				color: #204080;
 				text-decoration: underline;
-				text-align: center;
 				margin: 0.5em 0em;
 
 				& .signature-image
