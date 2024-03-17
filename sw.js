@@ -19,7 +19,7 @@ const cacheFileURLs = [
 //	インストール時にファイルをキャッシュする
 self.addEventListener( "install", async function ( eventObj )
 {
-	await eventObj.waituntil( caches.open( cacheName ).then( async function ( cacheObj )
+	await eventObj.waitUntil( caches.open( cacheName ).then( async function ( cacheObj )
 	{
 		return cacheObj.addAll( cacheFileURLs );
 	} ) );
