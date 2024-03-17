@@ -35,6 +35,8 @@ article#questionnaire
 
 	--width:  min( 100vw, 100vh * var( --content-aspect-ratio ) );
 	--height: min( 100vh, 100vw / var( --content-aspect-ratio ) );
+	--dynamic-width:  min( 100dvw, 100dvh * var( --content-aspect-ratio ) );
+	--dynamic-height: min( 100dvh, 100dvw / var( --content-aspect-ratio ) );
 
 	/* 基本の設定 */
 	--font-size: calc( var( --width ) / var( --characters-x ) );
@@ -58,6 +60,8 @@ article#questionnaire
 	        user-select: none;
 	width:  calc( var( --width )  - 1em * var( --margin-characters-x ) * 2 );
 	height: calc( var( --height ) - 1em * var( --margin-characters-y ) * 2 );
+	width:  calc( var( --dynamic-width )  - 1em * var( --margin-characters-x ) * 2 );
+	height: calc( var( --dynamic-height ) - 1em * var( --margin-characters-y ) * 2 );
 	padding: calc( 1em * var( --margin-characters-x ) / 2 );
 	margin:  calc( 1em * var( --margin-characters-x ) / 2 );
 
