@@ -303,17 +303,16 @@ document.addEventListener( "DOMContentLoaded", function()
 		}
 	}
 
-	navigator.serviceWorker.register( "./sw.js" ).then( function()
+	//	サービスワーカーの登録
+	if( "serviceWorker" in navigator )
 	{
-		console.log( "ServiceWorker Registration successed" );
-	}, function( error )
-	{
-		console.log( "ServiceWorker Registration errored" );
-		console.log( error );
-	} );
-	
-	function addAnswer( button )
-	{
-		answer += "," + button.value;
+		navigator.serviceWorker.register( "sw.js" ).then( function ()
+		{
+			console.log( "ServiceWorker Registration successed" );
+		}, function ( error )
+		{
+			console.log( "ServiceWorker Registration errored" );
+			console.log( error );
+		} );
 	}
 } );
