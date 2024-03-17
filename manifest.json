@@ -1,7 +1,15 @@
 
 {
-    "short_name": "川崎市アンケート",
-    "name": "川崎市アンケートPWAサイト",
-    "start_url": "index.html",
-    "display": "standalone"
+	"short_name": "川崎市アンケート",
+	"name": "川崎市アンケートPWA",
+	"start_url": "index.html",
+	"display": "standalone",
+	"orientation": "portrait",
+	"icons": [
+		{
+			"src": "img/KawasakiBrandSymbol.svg",
+			"type": "image/svg+xml",
+			"sizes": "48x48 72x72 96x96 128x128 256x256 512x512"
+		}
+	]
 }
